@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+}
+
+.image {
+  width: auto;
+  height: auto;
+}
+
+.container {
+  display: flex;
+  flex-flow: row;
+}

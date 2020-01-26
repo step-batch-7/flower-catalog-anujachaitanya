@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flower Catalog Website</title>
+  </head>
+
+  <body>
+    <header><a href="index.html"> << </a> Guest Book</header>
+    <hr />
+    <h1>Leave a comment</h1>
+    <form action="guestBook.html" method="POST">
+      Name: <input type="text" name="username" required /> <br />
+      Comment: <textarea name="comment" cols="40" rows="8" required></textarea>
+      <br />
+      <input type="submit" />
+    </form>
+    <hr />
+    <table cellspacing="10" cellpadding="1" id="comments">
+      <tr cellspacing="10">
+        <th>DATETIME</th>
+        <th>NAME</th>
+        <th>COMMENTS</th>
+      </tr>
+      __COMMENTS__
+    </table>
+  </body>
+</html>

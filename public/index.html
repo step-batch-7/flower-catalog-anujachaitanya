@@ -3,6 +3,15 @@
   <head>
     <link rel="stylesheet" href="style.css" />
     <title>Flower Catalog Website</title>
+    <script>
+      const hide = () => {
+        const element = document.getElementById('gif');
+        element.style.opacity = 0;
+        setTimeout(() => {
+          element.style.opacity = 1;
+        }, 1000);
+      };
+    </script>
   </head>
 
   <body>
@@ -19,7 +28,12 @@
         </ul>
         <div>
           <a href="guestBook.html"> Guest Book </a>
-          <img src="flower.gif" alt="flower animation" id="gif" />
+          <img
+            src="flower.gif"
+            alt="flower animation"
+            id="gif"
+            onclick="hide()"
+          />
         </div>
       </div>
     </div>

@@ -1,0 +1,23 @@
+body {
+  font-family: sans-serif;
+}
+
+.image {
+  width: 500px;
+  height: 500px;
+}
+
+header {
+  font-size: 30px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-flow: row;
+}
+
+.description {
+  margin-top: 100px;
+  margin-left: 10px;
+}

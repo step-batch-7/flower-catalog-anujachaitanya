@@ -4,16 +4,13 @@ const { handleRequest } = require('./lib/handlers');
 const handleConnection = function(req, res) {
   req.setEncoding('utf8');
   let data = '';
-  req.on('data', chunk => {
-    console.log(chunk);
-    console.log(data);
-    data = data + chunk;
-  });
+  req.on('data', chunk => (data += chunk));
 
   req.on('end', () => {
     const response = handleRequest(req, data);
-    res.setHeader('Content-Type', response.contentType);
-    res.setHeader('Status-Code', response.statusCode);
+    res.writeHead(response.statusCode, {
+      'Content-Type': response.contentType
+    });
     res.end(response.content);
   });
 };

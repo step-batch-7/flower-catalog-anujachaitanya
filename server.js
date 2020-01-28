@@ -1,5 +1,5 @@
 const http = require('http');
-const { processRequest } = require('./lib/processRequest');
+const { handleRequest } = require('./lib/handlers');
 
 const handleConnection = function(req, res) {
   req.setEncoding('utf8');
@@ -11,7 +11,7 @@ const handleConnection = function(req, res) {
   });
 
   req.on('end', () => {
-    const response = processRequest(req, data);
+    const response = handleRequest(req, data);
     res.setHeader('Content-Type', response.contentType);
     res.setHeader('Status-Code', response.statusCode);
     res.end(response.content);

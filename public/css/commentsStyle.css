@@ -3,6 +3,11 @@ table {
   margin-top: 20px;
 }
 
-th {
-  width: 150px;
+tr {
+  text-align: center;
+}
+
+td {
+  width: 250px;
+  text-align: center;
 }

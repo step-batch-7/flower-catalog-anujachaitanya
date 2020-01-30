@@ -3,19 +3,22 @@ class App {
     this.routes = [];
   }
   get(path, handler) {
-    this.routes.push({ path, handler, method: 'GET' })
+    this.routes.push({ path, handler, method: 'GET' });
   }
   post(path, handler) {
-    this.routes.push({ path, handler, method: 'POST' })
+    this.routes.push({ path, handler, method: 'POST' });
   }
   use(middleware) {
-    this.routes.push({ handler: middleware })
+    this.routes.push({ handler: middleware });
   }
   serve(req, res) {
-    console.log('Request: ', req.url, req.method);
-    const matchingHandlers = this.routes.filter((route) => matchRoute(route, req));
-    const next = function () {
-      if (matchingHandlers.length === 0) return;
+    const matchingHandlers = this.routes.filter(route =>
+      matchRoute(route, req)
+    );
+    const next = function() {
+      if (matchingHandlers.length === 0) {
+        return;
+      }
       const router = matchingHandlers.shift();
       router.handler(req, res, next);
     };
@@ -23,10 +26,11 @@ class App {
   }
 }
 
-const matchRoute = function (route, req) {
-  if (route.method)
-    return req.method == route.method && req.url.match(route.path);
+const matchRoute = function(route, req) {
+  if (route.method) {
+    return req.method === route.method && req.url.match(route.path);
+  }
   return true;
-}
+};
 
 module.exports = { App };

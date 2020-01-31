@@ -12,8 +12,8 @@ describe('GET /', () => {
       .expect(200, done);
   });
 
-  it('should return Ageratum', done => {
-    const expectedHeading = new RegExp(' Ageratum</header>');
+  it('should return html file', done => {
+    const expectedHeading = new RegExp('Ageratum</header>');
     request(app.serve.bind(app))
       .get('/Ageratum.html')
       .expect('Content-Length', '1338')
@@ -22,22 +22,29 @@ describe('GET /', () => {
       .expect(200, done);
   });
 
-  it('should return Ageratum', done => {
-    const expectedHeading = new RegExp(' Abeliophyllum</header>');
+  it('should return image file', done => {
     request(app.serve.bind(app))
-      .get('/Abeliophyllum.html')
-      .expect('Content-Length', '1569')
-      .expect('Content-Type', 'text/html')
-      .expect(expectedHeading)
+      .get('/images/pbase-agerantum.jpg')
+      .expect('Content-Length', '55554')
+      .expect('Content-Type', 'image/jpeg')
       .expect(200, done);
   });
 
-  it('should return guestBook.html', done => {
-    const expectedHeading = new RegExp('<h1>Leave a comment</h1>');
+  it('should return css file', done => {
+    const expectedHeading = new RegExp('.description {');
     request(app.serve.bind(app))
-      .get('/guestBook.html')
-      .expect('Content-Type', 'text/html')
+      .get('/css/flower.css')
       .expect(expectedHeading)
+      .expect('Content-Length', '262')
+      .expect('Content-Type', 'text/css')
+      .expect(200, done);
+  });
+
+  it('should return pdf file ', done => {
+    request(app.serve.bind(app))
+      .get('/images/flower.gif')
+      .expect('Content-Length', '65088')
+      .expect('Content-Type', 'image/gif')
       .expect(200, done);
   });
 
@@ -50,17 +57,18 @@ describe('GET /', () => {
 });
 
 describe('POST /', () => {
-  it('should run post method on /guestBook.html', done => {
-    request(app.serve.bind(app))
-      .post('/guestBook.html')
-      .send('username=anuja&comment=heyy')
-      .expect(302, done);
-  });
-
   it('should give method not found for post on index.html', done => {
     request(app.serve.bind(app))
       .post('/index.html')
       .send('username=anuja&comment=heyy')
+      .expect(405, done);
+  });
+});
+
+describe('INVALID METHODS', () => {
+  it('should give method not found for requests other than post or get', done => {
+    request(app.serve.bind(app))
+      .put('/index.html')
       .expect(405, done);
   });
 });

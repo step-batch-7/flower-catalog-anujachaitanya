@@ -16,7 +16,6 @@ describe('GET /', () => {
     const expectedHeading = new RegExp('<h1>Leave a comment</h1>');
     request(app.serve.bind(app))
       .get('/guestBook.html')
-      .expect('Content-Length', '1313')
       .expect('Content-Type', 'text/html')
       .expect(expectedHeading)
       .expect(200, done);

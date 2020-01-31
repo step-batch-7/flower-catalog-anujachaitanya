@@ -1,4 +1,6 @@
 const request = require('supertest');
+const sinon = require('sinon');
+const fs = require('fs');
 const { app } = require('../lib/handlers');
 
 describe('GET /', () => {
@@ -71,6 +73,15 @@ describe('POST /', () => {
       .post('/index.html')
       .send('username=anuja&comment=heyy')
       .expect(405, done);
+  });
+
+  it('should run post run method on /guestBook.html', done => {
+    before(() => sinon.replace(fs, 'writeFileSync', () => {}));
+    request(app.serve.bind(app))
+      .post('/guestBook.html')
+      .send('username=anuja&comment=heyy')
+      .expect(302, done);
+    after(() => sinon.restore());
   });
 });
 

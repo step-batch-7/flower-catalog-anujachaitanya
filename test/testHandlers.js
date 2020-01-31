@@ -58,7 +58,7 @@ describe('GET /', () => {
       .expect(200, done);
   });
 
-  it('should give not found if bad file', done => {
+  it('should give 404 if bad file is given', done => {
     request(app.serve.bind(app))
       .get('/bad')
       .expect('Content-Type', 'text/html')
@@ -76,7 +76,7 @@ describe('POST /', () => {
 });
 
 describe('INVALID METHODS', () => {
-  it('should give method not found for requests other than post or get', done => {
+  it('should give 405 for requests other than post or get', done => {
     request(app.serve.bind(app))
       .put('/index.html')
       .expect(405, done);

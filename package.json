@@ -8,8 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha",
-    "start": "node server.js"
+    "test": "export DATA_STORE=$(pwd)/test/dataStore/comments.json;mocha",
+    "start": "export DATA_STORE=$(pwd)/lib/comments.json; node server.js"
   },
   "repository": {
     "type": "git",

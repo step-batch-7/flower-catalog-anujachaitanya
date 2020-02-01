@@ -75,14 +75,14 @@ describe('POST /', () => {
       .expect(405, done);
   });
 
+  before(() => sinon.replace(fs, 'writeFileSync', () => {}));
   it('should run post run method on /guestBook.html', done => {
-    before(() => sinon.replace(fs, 'writeFileSync', () => {}));
     request(app.serve.bind(app))
       .post('/guestBook.html')
       .send('username=anuja&comment=heyy')
       .expect(302, done);
-    after(() => sinon.restore());
   });
+  after(() => sinon.restore());
 });
 
 describe('INVALID METHODS', () => {
